@@ -1,8 +1,8 @@
 ---
 title: "Connect Library"
 index: 2
-category: "guides"
-type: "content"
+category: "uport-connect"
+type: "guide"
 source: "https://github.com/uport-project/uport-connect/blob/develop/docs/guides/usage.md"
 ---
 
@@ -174,7 +174,7 @@ connect.requestDisclosure({ notifications: true })
 connect.onResponse('disclosureReq').then(payload => {
   const did = payload.res.did
   // can ignore, as this is saved in the background to connect, and push transport is configured
-  // const pushToken = payload.res.pushToken  
+  // const pushToken = payload.res.pushToken
 
   // Now once you make another request, the request will be sent in a push instead of QR code
   // Mobile flow still remains the same

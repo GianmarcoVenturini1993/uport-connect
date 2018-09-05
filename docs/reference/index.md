@@ -1,14 +1,14 @@
 ---
 title: "Uport Connect"
 index: 0
-category: "reference"
-type: "content"
+category: "uport-connect"
+type: "reference"
 ---
 
 <a name="Connect"></a>
 
 ## Connect
-**Kind**: global class  
+**Kind**: global class
 
 * [Connect](#Connect)
     * [new Connect(appName, [opts])](#new_Connect_new)
@@ -33,7 +33,7 @@ type: "content"
 ### new Connect(appName, [opts])
 Instantiates a new uPort Connect object.
 
-**Returns**: <code>[Connect](#Connect)</code> - self  
+**Returns**: <code>[Connect](#Connect)</code> - self
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -52,7 +52,7 @@ Instantiates a new uPort Connect object.
 | [opts.ethrConfig] | <code>Object</code> |  | Configuration object for ethr did resolver. See [ethr-did-resolver](https://github.com/uport-project/ethr-did-resolver) |
 | [opts.registry] | <code>Object</code> |  | Configuration for uPort DID Resolver (DEPRECATED) See [uport-did-resolver](https://github.com/uport-project/uport-did-resolver) |
 
-**Example**  
+**Example**
 ```js
 import  Connect  from 'uport-connect'
 const connect = new Connect('MydappName')
@@ -63,13 +63,13 @@ const connect = new Connect('MydappName')
 Accessor methods for Connect state.  The state consists of the key-value pairs below
  (did, doc, mnid, address, keypair, pushToken, and publicEncKey)
 
-**Kind**: instance property of <code>[Connect](#Connect)</code>  
+**Kind**: instance property of <code>[Connect](#Connect)</code>
 <a name="Connect+state"></a>
 
 ### connect.state
 Setter methods with appropriate validation
 
-**Kind**: instance property of <code>[Connect](#Connect)</code>  
+**Kind**: instance property of <code>[Connect](#Connect)</code>
 <a name="Connect+getProvider"></a>
 
 ### connect.getProvider() ⇒ <code>UportSubprovider</code>
@@ -79,9 +79,9 @@ Instantiates and returns a web3 styple provider wrapped with uPort functionality
  overrides eth_sendTransaction to start the send transaction flow to pass the
  transaction to the uPort app.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
-**Returns**: <code>UportSubprovider</code> - A web3 style provider wrapped with uPort functionality  
-**Example**  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
+**Returns**: <code>UportSubprovider</code> - A web3 style provider wrapped with uPort functionality
+**Example**
 ```js
 const uportProvider = connect.getProvider()
  const web3 = new Web3(uportProvider)
@@ -93,8 +93,8 @@ const uportProvider = connect.getProvider()
 ### connect.onResponse(id, cb) ⇒ <code>Promise.&lt;Object, Error&gt;</code>
 Get response by id of earlier request, returns promise which resolves when first reponse with given id is available. Listen instead, if looking for multiple responses of same id.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
-**Returns**: <code>Promise.&lt;Object, Error&gt;</code> - promise resolves once valid response for given id is avaiable, otherwise rejects with error, no promised returned if callback given  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
+**Returns**: <code>Promise.&lt;Object, Error&gt;</code> - promise resolves once valid response for given id is avaiable, otherwise rejects with error, no promised returned if callback given
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -108,7 +108,7 @@ Push a response payload to uPort connect to be handled. Useful if implementing y
 and you are getting responses with your own functions, listeners, event handlers etc. It will
 parse the response and resolve it to any listening onResponse functions with the matching id.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -119,7 +119,7 @@ parse the response and resolve it to any listening onResponse functions with the
 ### connect.send(request, id, [opts])
 Send a request message to a uPort client.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -141,8 +141,8 @@ Builds and returns a contract object which can be used to interact with
  a transaction, as these are the only calls which require interaction with a uPort client.
  For reading and/or events use web3 alongside or a similar library.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
-**Returns**: <code>Object</code> - contract object  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
+**Returns**: <code>Object</code> - contract object
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -154,14 +154,14 @@ Builds and returns a contract object which can be used to interact with
 Given a transaction object (similarly defined as the web3 transaction object)
  it creates a transaction sign request and sends it.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | txObj | <code>Object</code> |  |  |
 | [id] | <code>String</code> | <code>&#x27;txReq&#x27;</code> | string to identify request, later used to get response, by default name of function, if not function call, by default 'txReq' |
 
-**Example**  
+**Example**
 ```js
 const txobject = {
    to: '0xc3245e75d3ecd1e81a9bfb6558b6dafe71e9f347',
@@ -181,7 +181,7 @@ const txobject = {
 ### connect.createVerificationRequest(reqObj, [id])
 Request uPort client/user to sign a claim or list of claims
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -190,7 +190,7 @@ Request uPort client/user to sign a claim or list of claims
 | reqObj.sub | <code>String</code> |  | the DID which the unsigned claim is about |
 | [id] | <code>String</code> | <code>&#x27;signClaimReq&#x27;</code> | string to identify request, later used to get response |
 
-**Example**  
+**Example**
 ```js
 const unsignedClaim = {
    claim: {
@@ -212,7 +212,7 @@ const unsignedClaim = {
 ### connect.requestDisclosure([reqObj], [id])
 Creates a [Selective Disclosure Request JWT](https://github.com/uport-project/specs/blob/develop/messages/sharereq.md)
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -226,7 +226,7 @@ Creates a [Selective Disclosure Request JWT](https://github.com/uport-project/sp
 | reqObj.expiresIn | <code>Number</code> |  | Seconds until expiry |
 | [id] | <code>String</code> | <code>&#x27;disclosureReq&#x27;</code> | string to identify request, later used to get response |
 
-**Example**  
+**Example**
 ```js
 const req = { requested: ['name', 'country'],
                callbackUrl: 'https://myserver.com',
@@ -244,7 +244,7 @@ const req = { requested: ['name', 'country'],
 ### connect.attest([credential], [id])
 Create a credential about connnected user
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -253,7 +253,7 @@ Create a credential about connnected user
 | credential.exp | <code>String</code> |  | time at which this claim expires and is no longer valid (seconds since epoch) |
 | [id] | <code>String</code> | <code>&#x27;attestReq&#x27;</code> | string to identify request, later used to get response |
 
-**Example**  
+**Example**
 ```js
 connect.attest({
   sub: 'did:ethr:0x413daa771a2fc9c5ae5a66abd144881ef2498c54',
@@ -271,7 +271,7 @@ Update the internal state of the connect instance and ensure that it is consiste
 with the state saved to localStorage.  You can pass in an object containing key-value pairs to update,
 or a function that returns updated key-value pairs as a function of the current state.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -282,18 +282,18 @@ or a function that returns updated key-value pairs as a function of the current 
 ### connect.loadState()
 Load state from local storage and set this instance's state accordingly.
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 <a name="Connect+logout"></a>
 
 ### connect.logout()
 Clear any user-specific state from the browser, (both the Connect instance and localStorage)
 effectively logging them out. The keypair (app-instance identity) is preserved
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
 <a name="Connect+reset"></a>
 
 ### connect.reset()
 Clear the entire state of the connect instance, including the keypair, from memory
 and localStorage.  Rebuild this.credentials with a new app-instance identity
 
-**Kind**: instance method of <code>[Connect](#Connect)</code>  
+**Kind**: instance method of <code>[Connect](#Connect)</code>
